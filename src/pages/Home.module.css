@@ -1,0 +1,33 @@
+.layout {
+    height: calc(100vh - 4em);
+    margin: 2em;
+    position: relative;
+}
+
+.home {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+        rgba(36, 42, 46, 0.7),
+        rgba(36, 42, 46, 0.7)
+      ),
+      url('../assets/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    gap: 2.2em;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.home h1 {
+    font-size: 4em;
+}
+
+.home p {
+    font-size: 1.7em;
+    color: var(--color-light--1);
+}

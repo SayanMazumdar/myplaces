@@ -1,0 +1,27 @@
+.nav {
+    position: absolute;
+    margin-top: 2em;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5em;
+}
+
+.logo {
+    display: flex;
+    font-size: 1.7em;
+    gap: 0.8em;
+    align-items: center;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 3em;
+    font-size: 1.4em;
+    align-items: center;
+    color: var(--color-light--2);
+    font-weight: 600;
+    cursor: pointer;
+}
