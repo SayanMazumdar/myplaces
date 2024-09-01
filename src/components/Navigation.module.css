@@ -29,3 +29,7 @@
     color: var(--color-light--2);
     text-decoration: none;
 }
+
+a:global(.active) {
+    color: var(--color-brand--2);
+}

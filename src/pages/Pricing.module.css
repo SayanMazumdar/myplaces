@@ -1,0 +1,32 @@
+.layout {
+    height: calc(100vh - 4em);
+    margin: 2em;
+    border-radius: 10px;
+    position: relative;
+    background-image: linear-gradient(
+        rgba(36, 42, 46, 0.7),
+        rgba(36, 42, 46, 0.8)
+      ),
+      url('../assets/img-2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.product {
+    height: inherit;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-direction: column;
+}
+
+.product h1 {
+    font-size: 3.6em;
+    font-weight: 600;
+    margin-bottom: 0.6em;
+}
+
+.product p {
+    font-size: 1.7em;
+}
