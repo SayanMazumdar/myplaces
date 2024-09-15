@@ -1,18 +1,13 @@
 .nav {
     position: absolute;
-    margin-top: 2em;
+    margin: 2em auto 0 auto;
     display: flex;
-    width: 100%;
+    width: 90%;
+    left: 0;
+    right: 0;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5em;
-}
-
-.logo {
-    display: flex;
-    font-size: 1.7em;
-    gap: 0.8em;
-    align-items: center;
+    
 }
 
 .nav ul {
@@ -25,11 +20,11 @@
     cursor: pointer;
 }
 
-.nav a {
+a {
     color: var(--color-light--2);
     text-decoration: none;
 }
 
-a:global(.active) {
+nav a:global(.active) {
     color: var(--color-brand--2);
 }

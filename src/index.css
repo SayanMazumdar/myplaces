@@ -46,3 +46,20 @@ button {
 button:hover {
     background-color: var(--color-brand--2-dark);
 }
+
+label {
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+input {
+    font-size: 1.6em;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-light--3);
+}
+
+input:focus {
+    outline: none;
+}

@@ -1,0 +1,31 @@
+:root {
+    --width: 50%;
+}
+
+.layout {
+    height: calc(100vh - 4em);
+    margin: 2em;
+    background-color: var(--color-dark--0);
+    position: relative;
+    border-radius: 10px;
+}
+
+.login {
+    width: 30%;
+    min-width: fit-content;
+    background-color: var(--color-dark--1);
+    margin: 10em auto 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 1.6em 2.5em;
+    border-radius: 10px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    margin-bottom: 1.8em;
+}
+
