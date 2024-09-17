@@ -5,7 +5,35 @@
     border-left: 4px solid var(--color-brand--2);
     display: flex;
     margin: 1em 0;
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: 600;
-    box-sizing: border-box;
+    align-items: center;
 }
+
+.firstCol, .secCol {
+    width: 50%;
+    display: flex;
+    gap: 0.8em;
+    align-items: center;
+}
+
+.secCol {
+    justify-content: flex-end;
+}
+
+.removeBtn {
+    height: 2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--color-dark--1);
+    color: var(--color-light--2);
+    font-size: 1.6rem;
+    font-weight: 400;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  
+  .removeBtn:hover {
+    background-color: var(--color-brand--1);
+    color: var(--color-dark--1);
+  }
