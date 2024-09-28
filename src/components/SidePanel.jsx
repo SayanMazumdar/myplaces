@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import styles from './SidePanel.module.css';
 
 export default function SidePanel() {
+
     return (
         <div className={styles.panel}>
             <Link to='/'>

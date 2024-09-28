@@ -21,7 +21,7 @@ export default function MyPlaces({ cities, setCities }) {
             }
         }
         fetchCities();
-    }, [])
+    }, [setCities])
 
     return (
         <div className={styles.layout}>

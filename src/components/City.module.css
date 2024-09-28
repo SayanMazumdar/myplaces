@@ -7,7 +7,8 @@
     margin: 1em 0;
     font-size: 1.6em;
     font-weight: 600;
-    align-items: center;
+    align-items: center; 
+    cursor: pointer;
 }
 
 .firstCol, .secCol {
