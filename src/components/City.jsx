@@ -4,9 +4,9 @@ import EmojiToImg from './EmojiToImg';
 
 export default function City({ cityObj }) {
 
-  const { cityName, emoji, date, id } = cityObj;
+  const { cityName, emoji, date, id, position } = cityObj;
   return (
-    <Link to={`${id}`}>
+    <Link to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
       <div className={styles.city}>
         <div className={styles.firstCol}>
           {EmojiToImg(emoji)}

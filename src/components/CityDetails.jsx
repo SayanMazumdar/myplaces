@@ -1,36 +1,35 @@
 import EmojiToImg from './EmojiToImg';
 import styles from './CityDetails.module.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const tempData = {
-  "city": "Berlin",
-  "emoji": "🇩🇪",
-  "date": "2027-02-12T09:24:11.863Z",
-  "notes": "Amazing!"
-}
+export default function CityDetails({ cities }) {
 
-export default function CityDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const selectedCity = cities.filter((city) => city.id === id).at(0);
+
   return (
     <div className={styles.layout}>
       <div className={styles.row}>
         <p className={styles.label}>CITY NAME</p>
         <div className={styles.city}>
-          {EmojiToImg(tempData.emoji)}
-          <p>{tempData.city}</p>
+          {EmojiToImg(selectedCity.emoji)}
+          <p>{selectedCity.cityName}</p>
         </div>
       </div>
       <div className={styles.row}>
-        <p className={styles.label}>YOU WENT TO BERLIN ON</p>
-        <p className={styles.field}>📅 {new Date(tempData.date).toLocaleDateString('en-US', { weekday: "long", day: "2-digit", month: "long", year: "numeric" })}</p>
+        <p className={styles.label}>YOU WENT TO {selectedCity.cityName.toUpperCase()} ON</p>
+        <p className={styles.field}>📅 {new Date(selectedCity.date).toLocaleDateString('en-US', { weekday: "long", day: "2-digit", month: "long", year: "numeric" })}</p>
       </div>
       <div className={styles.row}>
         <p className={styles.label}>YOUR NOTES</p>
-        <p className={styles.field}>{tempData.notes}</p>
+        <p className={styles.field}>{selectedCity.notes ? selectedCity.notes : "N/A"}</p>
       </div>
       <div className={styles.row}>
         <p className={styles.label}>LEARN MORE</p>
-        <a href={`https://en.wikipedia.org/wiki/${tempData.city.toLowerCase()}`} target='blank' className={`${styles.field} ${styles.link}`}>Check out Berlin on Wikipedia &rarr;</a>
+        <a href={`https://en.wikipedia.org/wiki/${selectedCity.cityName.toLowerCase()}`} target='blank' className={`${styles.field} ${styles.link}`}>Check out {selectedCity.cityName} on Wikipedia &rarr;</a>
       </div>
-      <button className='btnTransparent'>&larr; BACK</button>
+      <button className='btnTransparent' onClick={() => navigate(-1)}>&larr; BACK</button>
     </div>
   )
 }

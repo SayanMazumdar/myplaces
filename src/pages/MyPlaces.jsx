@@ -4,11 +4,12 @@ import styles from './MyPlaces.module.css'
 
 const BASE_URL = 'http://localhost:8000';
 
-export default function MyPlaces({ cities, setCities }) {
+export default function MyPlaces({ setCities, setLoading }) {
 
     useEffect(() => {
         async function fetchCities() {
             try {
+                setLoading(true);
                 const res = await fetch(`${BASE_URL}/cities`);
                 if(!res.ok) {
                     throw new Error('Something went wrong!');
@@ -19,9 +20,12 @@ export default function MyPlaces({ cities, setCities }) {
             catch (error) {
                 console.error(error)
             }
+            finally {
+                setLoading(false);
+            }
         }
         fetchCities();
-    }, [setCities])
+    }, [setCities, setLoading])
 
     return (
         <div className={styles.layout}>
