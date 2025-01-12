@@ -1,8 +1,10 @@
 import City from './City';
 import Loader from './Loader';
+import { useCitiesContext } from "../CitiesContext";
 
-export default function Cities({ cities, loading }) {
+export default function Cities() {
 
+  const { cities, loading } = useCitiesContext();
   return (
     <>
     {loading ? <Loader /> :

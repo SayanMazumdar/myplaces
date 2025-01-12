@@ -1,0 +1,20 @@
+.map {
+    height: 100%;
+    width: 65%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.mapContainer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.myLocation {
+    position: absolute;
+    z-index: 2;
+    bottom: 2em;
+}

@@ -1,4 +1,4 @@
-@import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
+/*@import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";*/
 @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
 :root {
@@ -52,15 +52,17 @@ label {
     font-weight: 600;
 }
 
-input {
+input, textarea {
     font-size: 1.6em;
     padding: 0.5em;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     background-color: var(--color-light--3);
+    font-family: inherit;
+    font-weight: 600;
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline: none;
 }
 
