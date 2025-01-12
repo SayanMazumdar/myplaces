@@ -4,17 +4,17 @@ import { useCitiesContext } from "../CitiesContext";
 
 export default function Countries() {
 
-  const { cities } = useCitiesContext();
+  const { countries } = useCitiesContext();
   return (
     <div className={styles.countries}>
-      {cities.map((item) => <Country cityObj={item} key={item.id} />)}
+      {countries.map((item) => <Country countryObj={item} key={item.countryCode} />)}
     </div>
   )
 }
 
-function Country({ cityObj }) {
+function Country({ countryObj }) {
 
-  const { country, countryCode } = cityObj;
+  const { country, countryCode } = countryObj;
 
   return (
     <div className={styles.country}>

@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
 
 const CitesContext = createContext();
 const BASE_URL = 'http://localhost:8000';
@@ -6,6 +6,7 @@ const BASE_URL = 'http://localhost:8000';
 function CitiesProvider({ children }) {
 
     const [cities, setCities] = useState([]);
+    const [countries, setCountries] = useState([]);
     const [selectedCity, setSelectedCity] = useState({});
     const [loading, setLoading] = useState(false);
 
@@ -13,7 +14,7 @@ function CitiesProvider({ children }) {
         try {
             setLoading(true);
             const res = await fetch(`${BASE_URL}/cities`);
-            if(!res.ok) {
+            if (!res.ok) {
                 throw new Error('Something went wrong!');
             }
             const data = await res.json();
@@ -94,8 +95,19 @@ function CitiesProvider({ children }) {
         }
     }
 
+    useEffect(() => {
+        setCountries(
+            cities.reduce((countries, city) => {
+                if (countries.filter((country) => country.country === city.country).length === 0) {
+                    countries.push({country: city.country, countryCode: city.countryCode});
+                }
+                return countries;
+            }, [])
+        );
+    }, [cities]);
+
     return (
-        <CitesContext.Provider value={{ cities, setCities, loading, setLoading, fetchCities, fetchSelectedCity, selectedCity, onCityAdd, onCityDelete }}>
+        <CitesContext.Provider value={{ cities, countries, loading, setLoading, fetchCities, fetchSelectedCity, selectedCity, onCityAdd, onCityDelete }}>
             {children}
         </CitesContext.Provider>
     )
