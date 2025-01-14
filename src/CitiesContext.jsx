@@ -29,6 +29,7 @@ function CitiesProvider({ children }) {
     }
 
     async function fetchSelectedCity(id) {
+        if (selectedCity.id === id) return;
         try {
             setLoading(true);
             const res = await fetch(`${BASE_URL}/cities/${id}`);
@@ -96,14 +97,16 @@ function CitiesProvider({ children }) {
     }
 
     useEffect(() => {
-        setCountries(
-            cities.reduce((countries, city) => {
-                if (countries.filter((country) => country.country === city.country).length === 0) {
-                    countries.push({country: city.country, countryCode: city.countryCode});
-                }
-                return countries;
-            }, [])
-        );
+        if (cities.length > 0) {
+            setCountries(
+                cities.reduce((countries, city) => {
+                    if (countries.filter((country) => country.country === city.country).length === 0) {
+                        countries.push({ country: city.country, countryCode: city.countryCode });
+                    }
+                    return countries;
+                }, [])
+            );
+        }
     }, [cities]);
 
     return (

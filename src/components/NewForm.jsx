@@ -1,6 +1,5 @@
 import Loader from './Loader';
 import styles from './NewForm.module.css';
-import EmojiToImg from './EmojiToImg';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCitiesContext } from '../CitiesContext';
@@ -34,6 +33,9 @@ export default function NewForm() {
     useEffect(() => {
         async function fetchLocation() {
             try {
+                if (!lat && ! lng) {
+                    throw new Error('Please select a valid city from the map. Click okay to continue');
+                }
                 const res = await fetch(`${API_URL}?lat=${lat}&lon=${lng}&apiKey=${API_KEY}`);
                 if (!res.ok) {
                     throw new Error('Something went wrong, please click okay and reload');
