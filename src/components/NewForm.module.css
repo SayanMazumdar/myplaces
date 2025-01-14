@@ -5,6 +5,11 @@
     border-radius: 8px;
 }
 
+.disableForm {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .formRow {
     display: flex;
     flex-direction: column;

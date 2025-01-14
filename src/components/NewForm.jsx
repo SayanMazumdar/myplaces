@@ -23,17 +23,17 @@ export default function NewForm() {
     const lat = searchParams.get('lat');
     const lng = searchParams.get('lng');
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         const submittedData = { cityName, country: data.country, countryCode: data.country_code.toLowerCase(), date, notes, position: { lat, lng } };
-        onCityAdd(submittedData);
+        await onCityAdd(submittedData);
         navigate('/myplaces');
     }
 
     useEffect(() => {
         async function fetchLocation() {
             try {
-                if (!lat && ! lng) {
+                if (!lat && !lng) {
                     throw new Error('Please select a valid city from the map. Click okay to continue');
                 }
                 const res = await fetch(`${API_URL}?lat=${lat}&lon=${lng}&apiKey=${API_KEY}`);
@@ -65,7 +65,7 @@ export default function NewForm() {
         <>
             {
                 loading ? <Loader /> : error ? null :
-                    <div className={styles.login}>
+                    <div className={`${styles.login} ${loading ? styles.disableForm : ''}`}>
                         <form>
                             <div className={styles.formRow}>
                                 <label htmlFor="name">City name</label>
