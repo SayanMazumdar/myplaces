@@ -1,6 +1,6 @@
 import City from './City';
 import Loader from './Loader';
-import { useCitiesContext } from "../CitiesContext";
+import { useCitiesContext } from "../contexts/CitiesContext";
 
 export default function Cities() {
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './City.module.css';
 import EmojiToImg from './EmojiToImg';
-import { useCitiesContext } from '../CitiesContext';
+import { useCitiesContext } from '../contexts/CitiesContext';
 
 export default function City({ cityObj }) {
 

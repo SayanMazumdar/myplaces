@@ -2,7 +2,7 @@ import EmojiToImg from './EmojiToImg';
 import styles from './CityDetails.module.css';
 import Loader from './Loader';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCitiesContext } from "../CitiesContext";
+import { useCitiesContext } from "../contexts/CitiesContext";
 import { useEffect } from 'react';
 
 export default function CityDetails() {

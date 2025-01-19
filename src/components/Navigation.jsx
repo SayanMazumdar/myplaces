@@ -1,8 +1,11 @@
+import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
 import styles from './Navigation.module.css';
 import { Link, NavLink } from 'react-router-dom';
 
 export default function Navigation() {
+
+  const { isAuthenticated } = useAuth();
   return (
     <nav className={styles.nav}>
       <Link to='/'>
@@ -16,7 +19,7 @@ export default function Navigation() {
           <NavLink to='/pricing'>PRICING</NavLink>
         </li>
         <li>
-          <NavLink to='/login'><button>LOG IN</button></NavLink>
+          <NavLink to={isAuthenticated ? '/myplaces' : '/login'}><button>LOG IN</button></NavLink>
         </li>
       </ul>
     </nav>

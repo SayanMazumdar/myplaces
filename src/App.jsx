@@ -8,27 +8,30 @@ import Countries from './components/Countries';
 import CityDetails from './components/CityDetails';
 import NewForm from './components/NewForm';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { CitiesProvider } from './CitiesContext';
+import { CitiesProvider } from './contexts/CitiesContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 export default function App() {
 
   return (
-    <CitiesProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='product' element={<Product />} />
-          <Route path='pricing' element={<Pricing />} />
-          <Route path='login' element={<Login />} />
-          <Route path='myplaces' element={<MyPlaces />}>
-            <Route index element={<Navigate replace to='cities' />} />
-            <Route path='cities' element={<Cities />} />
-            <Route path='countries' element={<Countries />} />
-            <Route path='cities/:id' element={<CityDetails />} />
-            <Route path='addcity' element={<NewForm />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </CitiesProvider>
+    <AuthProvider>
+      <CitiesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='product' element={<Product />} />
+            <Route path='pricing' element={<Pricing />} />
+            <Route path='login' element={<Login />} />
+            <Route path='myplaces' element={<MyPlaces />}>
+              <Route index element={<Navigate replace to='cities' />} />
+              <Route path='cities' element={<Cities />} />
+              <Route path='countries' element={<Countries />} />
+              <Route path='cities/:id' element={<CityDetails />} />
+              <Route path='addcity' element={<NewForm />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CitiesProvider>
+    </AuthProvider>
   )
 }

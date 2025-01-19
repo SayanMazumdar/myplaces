@@ -2,7 +2,7 @@ import Loader from './Loader';
 import styles from './NewForm.module.css';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useCitiesContext } from '../CitiesContext';
+import { useCitiesContext } from '../contexts/CitiesContext';
 
 
 const API_KEY = '80915634e6244f1eac379622c7b5b42b';
