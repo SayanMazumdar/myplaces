@@ -1,55 +1,64 @@
-import { useState, createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 
 const CitesContext = createContext();
 const BASE_URL = 'http://localhost:8000';
 
+const initialState = { cities: [], countries: [], selectedCity: {}, loading: false };
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'loading':
+            return { ...state, loading: action.payload };
+        case 'citiesLoaded':
+            return { ...state, cities: action.payload, loading: false };
+        case 'cityLoaded':
+            return { ...state, selectedCity: action.payload, loading: false };
+        case 'loadCountries':
+            return { ...state, countries: action.payload };
+        default:
+            return console.error('Unknown action type!');
+
+    }
+}
+
 function CitiesProvider({ children }) {
 
-    const [cities, setCities] = useState([]);
-    const [countries, setCountries] = useState([]);
-    const [selectedCity, setSelectedCity] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [{ cities, countries, selectedCity, loading }, dispatch] = useReducer(reducer, initialState);
 
     async function fetchCities() {
         try {
-            setLoading(true);
+            dispatch({ type: 'loading', payload: true });
             const res = await fetch(`${BASE_URL}/cities`);
             if (!res.ok) {
                 throw new Error('Something went wrong!');
             }
             const data = await res.json();
-            setCities(data);
+            dispatch({ type: 'citiesLoaded', payload: data })
         }
         catch (error) {
             console.error(error.message)
-        }
-        finally {
-            setLoading(false);
         }
     }
 
     async function fetchSelectedCity(id) {
         if (selectedCity.id === id) return;
         try {
-            setLoading(true);
+            dispatch({ type: 'loading', payload: true });
             const res = await fetch(`${BASE_URL}/cities/${id}`);
             if (!res.ok) {
                 throw new Error('Something went wrong!');
             }
             const data = await res.json();
-            setSelectedCity(data);
+            dispatch({ type: 'cityLoaded', payload: data });
         }
         catch (error) {
             console.error(error.message)
-        }
-        finally {
-            setLoading(false);
         }
     }
 
     async function onCityAdd(city) {
         try {
-            setLoading(true);
+            dispatch({ type: 'loading', payload: true });
             const res = await fetch(`${BASE_URL}/cities`,
                 {
                     method: 'POST',
@@ -62,19 +71,17 @@ function CitiesProvider({ children }) {
             }
             else {
                 fetchCities();
+                dispatch({ type: 'loading', payload: false });
             }
         }
         catch (error) {
             console.error(error.message)
         }
-        finally {
-            setLoading(false);
-        }
     }
 
     async function onCityDelete(id) {
         try {
-            setLoading(true);
+            dispatch({ type: 'loading', payload: true });
             const res = await fetch(`${BASE_URL}/cities/${id}`,
                 {
                     method: 'DELETE',
@@ -86,31 +93,29 @@ function CitiesProvider({ children }) {
             }
             else {
                 fetchCities();
+                dispatch({ type: 'loading', payload: false });
             }
         }
         catch (error) {
             console.error(error.message)
         }
-        finally {
-            setLoading(false);
-        }
     }
 
     useEffect(() => {
         if (cities.length > 0) {
-            setCountries(
-                cities.reduce((countries, city) => {
-                    if (countries.filter((country) => country.country === city.country).length === 0) {
-                        countries.push({ country: city.country, countryCode: city.countryCode });
-                    }
-                    return countries;
-                }, [])
-            );
+            const country = cities.reduce((countries, city) => {
+                if (countries.filter((country) => country.country === city.country).length === 0) {
+                    countries.push({ country: city.country, countryCode: city.countryCode });
+                }
+                return countries;
+            }, [])
+            dispatch({type: 'loadCountries', payload: country });
         }
     }, [cities]);
 
+
     return (
-        <CitesContext.Provider value={{ cities, countries, loading, setLoading, fetchCities, fetchSelectedCity, selectedCity, onCityAdd, onCityDelete }}>
+        <CitesContext.Provider value={{ cities, countries, loading, dispatch, fetchCities, fetchSelectedCity, selectedCity, onCityAdd, onCityDelete }}>
             {children}
         </CitesContext.Provider>
     )

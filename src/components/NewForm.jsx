@@ -12,7 +12,7 @@ const formattedDate = `${today.toLocaleDateString('en-US', { year: 'numeric' })}
 
 export default function NewForm() {
 
-    const { loading, setLoading, onCityAdd } = useCitiesContext();
+    const { loading, dispatch, onCityAdd } = useCitiesContext();
     const [error, setError] = useState(false);
     const [cityName, setCityName] = useState('');
     const [data, setData] = useState({});
@@ -53,13 +53,13 @@ export default function NewForm() {
                 setError(true);
             }
             finally {
-                setLoading(false);
+                dispatch({ type: 'loading', payload: false });
             }
         }
         setError(false);
-        setLoading(true);
+        dispatch({ type: 'loading', payload: true });
         fetchLocation();
-    }, [lat, lng, setLoading])
+    }, [lat, lng, dispatch])
 
     return (
         <>
