@@ -17,7 +17,6 @@ function reducer(state, action) {
             return { ...state, countries: action.payload };
         default:
             return console.error('Unknown action type!');
-
     }
 }
 

@@ -3,4 +3,5 @@
     margin: 2em;
     border-radius: 10px;
     display: flex;
+    position: relative;
 }

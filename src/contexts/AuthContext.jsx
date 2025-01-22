@@ -5,7 +5,7 @@ const USER = {
     username: 'Sayan.Mazumdar@test.com',
     password: 'Sayan@1234',
     name: 'Sayan',
-    picture: 'https://i.pravatar.cc/1000?img=6'
+    picture: 'https://i.pravatar.cc/45?img=6'
 }
 
 function AuthProvider({ children }) {
@@ -22,9 +22,14 @@ function AuthProvider({ children }) {
             alert('The provider Username or password is incorrect');
         }
     }
-    
+
+    function onLogout() {
+        setIsAuthenticated(false);
+        setLoggedUser({});
+    }
+
     return (
-        <AuthContext.Provider value={{ onLogin, loggedUser, isAuthenticated }}>
+        <AuthContext.Provider value={{ onLogin, onLogout, loggedUser, isAuthenticated }}>
             {children}
         </AuthContext.Provider>
     )

@@ -2,13 +2,13 @@ import Navigation from "../components/Navigation";
 import styles from "./Login.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 
 export default function Login() {
 
     const { onLogin, isAuthenticated } = useAuth();
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
+    const [mail, setMail] = useState('Sayan.Mazumdar@test.com');
+    const [password, setPassword] = useState('Sayan@1234');
     const navigate = useNavigate();
 
     function handleLogin(e) {
@@ -23,7 +23,7 @@ export default function Login() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/myplaces');
+            navigate('/myplaces', { replace: true });
         }
     }, [isAuthenticated, navigate])
 
