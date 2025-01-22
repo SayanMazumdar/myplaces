@@ -1,7 +1,7 @@
 import Navigation from "../components/Navigation";
 import styles from "./Login.module.css";
 import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -13,11 +13,19 @@ export default function Login() {
 
     function handleLogin(e) {
         e.preventDefault();
-        const authenticated = onLogin({ username: mail, password });
-        if (authenticated) {
-            navigate('/myplaces');
-        }      
+        
+        if (!mail || !password) {
+            alert('Please enter username and password to login!');
+            return
+        }    
+        onLogin({ username: mail, password });             
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/myplaces');
+        }
+    }, [isAuthenticated, navigate])
 
     return (
         <div className={styles.layout}>

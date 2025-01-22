@@ -11,7 +11,7 @@ export default function Home() {
           MyPages keeps track of your adventures.</h1>
         <p>A world map that tracks your footsteps into every city that you can think of. Never forget your wonderful
           experiences, and show your friends <br></br> how you have wondered the world.</p>
-        <Link to='/myplaces'><button>START TRACKING NOW</button></Link> 
+        <Link to='/login'><button>START TRACKING NOW</button></Link> 
       </div>
     </div>
   )

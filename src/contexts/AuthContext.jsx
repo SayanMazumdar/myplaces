@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react"
 const AuthContext = createContext();
 const USER = {
     username: 'Sayan.Mazumdar@test.com',
-    password: 'Sayan@1234'
+    password: 'Sayan@1234',
+    name: 'Sayan',
+    picture: 'https://i.pravatar.cc/1000?img=6'
 }
 
 function AuthProvider({ children }) {
@@ -14,13 +16,13 @@ function AuthProvider({ children }) {
     function onLogin({ username, password }) {
         if (username === USER.username && password === USER.password) {
             setIsAuthenticated(true);
-            setLoggedUser({username, avater: ""});
-            return true;
+            setLoggedUser(USER);
         }
         else {
             alert('The provider Username or password is incorrect');
         }
     }
+    
     return (
         <AuthContext.Provider value={{ onLogin, loggedUser, isAuthenticated }}>
             {children}

@@ -19,7 +19,7 @@ export default function Navigation() {
           <NavLink to='/pricing'>PRICING</NavLink>
         </li>
         <li>
-          <NavLink to={isAuthenticated ? '/myplaces' : '/login'}><button>LOG IN</button></NavLink>
+          <NavLink to='/login'><button>LOG IN</button></NavLink>
         </li>
       </ul>
     </nav>
