@@ -1,3 +1,6 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { CitiesProvider } from './contexts/CitiesContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
@@ -7,9 +10,7 @@ import Cities from './components/Cities';
 import Countries from './components/Countries';
 import CityDetails from './components/CityDetails';
 import NewForm from './components/NewForm';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { CitiesProvider } from './contexts/CitiesContext';
-import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
 
@@ -22,7 +23,7 @@ export default function App() {
             <Route path='product' element={<Product />} />
             <Route path='pricing' element={<Pricing />} />
             <Route path='login' element={<Login />} />
-            <Route path='myplaces' element={<MyPlaces />}>
+            <Route path='myplaces' element={<ProtectedRoute><MyPlaces /></ProtectedRoute>}>
               <Route index element={<Navigate replace to='cities' />} />
               <Route path='cities' element={<Cities />} />
               <Route path='countries' element={<Countries />} />
